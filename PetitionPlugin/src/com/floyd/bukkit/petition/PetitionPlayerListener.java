@@ -31,7 +31,7 @@ public class PetitionPlayerListener implements Listener {
             for (String message : messages) {
                 player.sendMessage(message);
             }
-            player.sendMessage("[Pe] &7Verwende /ticket um deine offenen Tickets zu verwalten.");
+            player.sendMessage("[Pe] §7Verwende /ticket um deine offenen Tickets zu verwalten.");
         }
     }
 }

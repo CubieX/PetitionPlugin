@@ -1,6 +1,6 @@
 name: PetitionPlugin
 main: com.floyd.bukkit.petition.PetitionPlugin
-version: 1.43d
+version: 1.43e
 website: http://minecraft.atc.no/plugins
 authors: [Xemnas33, Juze, CubieX]
 description: >
