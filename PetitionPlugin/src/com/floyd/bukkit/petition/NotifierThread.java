@@ -10,7 +10,6 @@ public class NotifierThread extends Thread {
     private HashMap<String, Integer> count = new HashMap<String, Integer>();
     private PetitionPlugin plugin = null;
     private String baseDir = "plugins/PetitionPlugin";
-    private Player player = null;
 
     public NotifierThread(PetitionPlugin owner) {
         plugin = owner;

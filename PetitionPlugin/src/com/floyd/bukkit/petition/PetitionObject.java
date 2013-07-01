@@ -206,9 +206,9 @@ public class PetitionObject {
 
     public String Owner(Server server) {
         if (server.getPlayer(owner) == null) {
-            return "ง4๘งf" + owner;    // Offline
+            return "ยง4ยงf" + owner;    // Offline
         } else {
-            return "ง2+งf" + owner;    // Online
+            return "ยง2+ยงf" + owner;    // Online
         }
     }
 
@@ -228,10 +228,20 @@ public class PetitionObject {
     }
 
     public String Assignee(Server server) {
-        if (server.getPlayer(assignee) == null) {
-            return "ง4๘งf" + assignee;        // Offline
-        } else {
-            return "ง2+งf" + assignee;        // Online
+        if (server.getPlayer(assignee) == null)
+        {
+           if(assignee.equals("*"))
+           {
+              return "ยงf" + assignee;        // Ticket not assigned to a player
+           }
+           else
+           {
+              return "ยง4*ยงf" + assignee;        // Offline
+           }            
+        }
+        else
+        {
+            return "ยง2+ยงf" + assignee;        // Online
         }
     }
 
@@ -240,7 +250,7 @@ public class PetitionObject {
     }
 
     public String Header(Server server) {
-        return "ง6#" + ID() + " " + Owner(server) + "ง7 -> " + Assignee(server) + "ง7: " + Title() + " (" + Log().length + ")";
+        return "ยง6#" + ID() + " " + Owner(server) + "ยง7 -> " + Assignee(server) + "ยง7: " + Title() + " (" + Log().length + ")";
     }
 
     public String[] Log() {

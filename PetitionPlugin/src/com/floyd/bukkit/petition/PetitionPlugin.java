@@ -214,13 +214,13 @@ public class PetitionPlugin extends JavaPlugin {
             PetitionObject petition = new PetitionObject(id, player, title);
             releaseLock(id, player);
             if (petition.isValid()) {
-                respond(player, "[Pe] §7Danke, deine Ticket-Nummer ist §6#" + petition.ID() + "§7. (Verwende '/ticket' zum Verwalten.)");
+                respond(player, "[Pe] §7Danke, deine Ticket-Nummer ist §6#" + petition.ID() + "§7.\n(Verwende '/ticket' zum Verwalten.)");
                 String[] except = { petition.Owner() };
                 notifyModerators("[Pe] §7" + settings.get("single") + " §6#" + petition.ID() + "§7 eroeffnet von " + name + ": " + title, except);
                 logger.info(name + " opened " + settings.get("single").toLowerCase() + " #" + id + ". " + title);
                 logAction(name + " opened " + settings.get("single").toLowerCase() + " #" + id + ". " + title);
             } else {
-                respond(player, "§4[Pe] Es gab einen Fehler beim Erstellen des Tickets. Bitte versuch es spaeter nochmal.");
+                respond(player, "§4[Pe] Es gab einen Fehler beim Erstellen des Tickets.\nBitte versuch es spaeter nochmal.");
                 System.out.println("[Pe] ERROR: PetitionPlugin failed to create a ticket, please check that plugins/PetitionPlugin exists and is writeable!");
             }
         }
@@ -305,7 +305,7 @@ public class PetitionPlugin extends JavaPlugin {
 					if (Boolean.parseBoolean(settings.get("single"))) {
 		        		notifyAll("[Pe] §7" + settings.get("single") + " §6#" + id + "§7 wurde geschlossen.", except );
 					} else {
-		        		notifyModerators("[Pe] §7" + settings.get("single") + " §6#" + id + "§7 wurde geschlossen." + message, except );
+		        		notifyModerators("[Pe] §7" + settings.get("single") + " §6#" + id + "§7 wurde geschlossen. " + message, except );
 					}
 	        		petition.Close(player, message);
 					logger.info(name + " closed petition " + id + ". " + message);
@@ -677,7 +677,8 @@ public class PetitionPlugin extends JavaPlugin {
 		try {
     		BufferedReader input =  new BufferedReader(new FileReader(fname));
     		if (( line = input.readLine()) != null) {
-    			line = line.trim();
+    			line = line.trim();    			
+    			input.close();
     		}
     	}
     	catch (Exception e) {
@@ -757,6 +758,8 @@ public class PetitionPlugin extends JavaPlugin {
         while ((read = reader.readLine()) != null) {
             out.append(read).append(newline);
         }
+        
+        reader.close();
         return out.toString();
     }
 
@@ -788,6 +791,8 @@ public class PetitionPlugin extends JavaPlugin {
     				}
     			}
     		}
+    		
+    		input.close();
     	}
     	catch (FileNotFoundException e) {
 			logger.warning( "[Pe] Error reading " + e.getLocalizedMessage() + ", using defaults" );
